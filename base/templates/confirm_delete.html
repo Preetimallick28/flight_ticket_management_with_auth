@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<h2 class="mt-4">Are you sure you want to delete: {{data.passenger_name}}</h2>
+
+<a class="btn btn-fancy" href="{% url 'delete_passenger_data' data.id %}">DELETE</a><br><br>
+<a class="btn btn-fancy" href="{% url 'booking_list' %}">CANCEL</a>
+
+
+{% endblock content %}

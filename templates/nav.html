@@ -1,0 +1,23 @@
+<nav class="navbar">
+  <div class="logo">
+    <a href="{% url 'home' %}"><img style="width: 50px; border-radius: 50%;" src="https://cdn.dribbble.com/userupload/22923953/file/original-7989767638d90d40050d24036dd357da.gif"></a>
+  </div>
+  <div class="nav-links">
+
+    {% if request.user.is_authenticated %}
+        
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'bookings' %}">Bookings</a>
+        <a href="{% url 'history' %}">History</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout_' %}">logout</a>
+        <a href="{% url 'about' %}">About</a>
+
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+
+    {% endif %}
+
+  </div>
+</nav>
