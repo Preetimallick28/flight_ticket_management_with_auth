@@ -6,10 +6,10 @@
     <form action="" method="POST">
         {% csrf_token %}
         <label class="form-label">Old Password</label>
-        <input type="password" name="old_pass" class="form-control" required>
+        <input type="text" name="old_pass" class="form-control" required>
 
         <label class="form-label">New Password</label>
-        <input type="password" name="new_pass" class="form-control" required>
+        <input type="text" name="new_pass" class="form-control" required>
 
         <button type="submit" class="btn-login">Reset Password</button>
     </form>
