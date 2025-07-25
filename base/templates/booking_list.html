@@ -8,7 +8,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">ID</th>
+          <!-- <th scope="col">HOST ID</th> -->
           <th scope="col">Flight Name</th>
           <th scope="col">Departure to Destination</th>
           <th scope="col">Departure Time to Destination Time</th>
@@ -24,7 +24,7 @@
       <tbody>
         {% for i in data %}
         <tr>
-          <th>{{i.id}}</th>
+          <!-- <th>{{request.user}}</th> -->
           <td>{{i.flight_name}}</td>
           <td>{{i.flight_departure}} - {{i.flight_destination}}</td>
           <td>{{i.flight_departure_time}} - {{i.flight_destination_time}}</td>

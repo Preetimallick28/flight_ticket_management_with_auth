@@ -1,57 +1,120 @@
   
-  *{
-    padding: 0;
-    margin: 0;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(90deg, #4e54c8, #8f94fb);
-    padding: 15px 40px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    animation: slideDown 1s ease-out;
-    border-radius: 0 0 20px 20px;
+ /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: #1f1f2e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  width: 50px;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: #38384d;
+}
+
+/* Search Bar */
+.nav-links form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 20px;
+}
+
+.nav-links input[type="text"] {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.nav-links input[type="button"] {
+  padding: 6px 12px;
+  background-color: #5c6bc0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-links input[type="button"]:hover {
+  background-color: #3f51b5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
   }
 
-  .logo h2 {
-    color: white;
-    font-size: 28px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    animation: fadeIn 1s ease-in-out;
-  }
-
-  nav div:last-child a {
-    color: white;
-    text-decoration: none;
-    margin-left: 25px;
-    font-size: 18px;
-    position: relative;
-    transition: color 0.3s ease;
-    font-weight: 500;
-    animation: fadeInLinks 1.5s ease forwards;
-  }
-
-  nav div:last-child a::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: white;
-    transition: 0.3s ease-in-out;
-  }
-
-  nav div:last-child a:hover::after {
+  .nav-links {
+    flex-direction: column;
     width: 100%;
   }
 
-  nav div:last-child a:hover {
-    color: #ffdfdf;
+  .nav-links form {
+    width: 100%;
+    margin-bottom: 10px;
   }
+
+  .nav-links input[type="text"] {
+    flex-grow: 1;
+    width: 70%;
+  }
+
+  .nav-links input[type="button"] {
+    width: 25%;
+  }
+
+  .nav-links a {
+    width: 100%;
+    text-align: left;
+  }
+}
+
 
   /* Animations */
   @keyframes slideDown {
@@ -314,3 +377,29 @@
     .card:hover {
         transform: translateY(-5px);
     }
+.search_flight {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.search_flight form {
+  display: flex;
+  gap: 10px;
+}
+.search_flight input[type="text"] {
+  padding: 10px;
+  width: 250px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+.search_flight input[type="submit"] {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.search_flight input[type="submit"]:hover {
+  background-color: #0056b3;
+}

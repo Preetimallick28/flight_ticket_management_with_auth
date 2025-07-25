@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -27,6 +28,7 @@ class bookModel(models.Model):
     passenger_phone = models.CharField(max_length=100)
     passenger_email = models.CharField(max_length=100)
     passenger_aadhar = models.CharField(max_length=100)
+    host = models.ForeignKey(User,on_delete=models.CASCADE)
 
 class historyModel(models.Model):
     flight_name = models.CharField(max_length=100)
@@ -41,4 +43,4 @@ class historyModel(models.Model):
     passenger_phone = models.CharField(max_length=100)
     passenger_email = models.CharField(max_length=100)
     passenger_aadhar = models.CharField(max_length=100)
-    
+    host = models.ForeignKey(User,on_delete=models.CASCADE)

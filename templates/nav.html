@@ -6,10 +6,11 @@
 
     {% if request.user.is_authenticated %}
         
+      
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'booking_list' %}">Bookings</a>
         <a href="{% url 'history_passenger_data' %}">History</a>
-        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'profile' %}">Profile({{request.user}})</a>
         <a href="{% url 'logout_' %}">logout</a>
         <a href="{% url 'about' %}">About</a>
 

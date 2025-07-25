@@ -2,12 +2,19 @@ from django.shortcuts import render , redirect
 from django.contrib import messages
 from base.models import flight_companies , flight_details , bookModel , historyModel
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import Q
 # Create your views here.
 
-@login_required(login_url='login')
+
 def home(request):
     data = flight_companies.objects.all()
+    if request.method=='GET':
+        if 'q' in request.GET:
+            q_data = request.GET['q']
+            print(q_data)
+            data = flight_companies.objects.filter(Q(flight_company_name__icontains=q_data))
+        else:
+            data=flight_companies.objects.all()
     return render(request,'home.html',{'data':data})
 
 
@@ -18,11 +25,20 @@ def about(request):
 @login_required
 def flight_details_list(request,pk):
     data = flight_details.objects.filter(flight_company_name=pk)
+    if request.method=='GET':
+        if 'from' in request.GET and 'to' in request.GET:
+            from_data = request.GET['from']
+            to_data = request.GET['to']
+            print(from_data,to_data)
+            data = flight_details.objects.filter(Q(flight_departure__icontains=from_data)| Q(flight_destination__icontains=to_data))
+        else:
+            data=flight_details.objects.filter(flight_company_name=pk)
     return render(request,'flight_details_list.html',{'data':data})
 
-@login_required
+@login_required(login_url='login')
 def book_passenger(request,pk):
     data = flight_details.objects.get(flight_name=pk)
+    
     if request.method == 'POST':
         flight_name=request.POST['flight_name'],
         flight_departure = request.POST['flight_departure']
@@ -49,14 +65,15 @@ def book_passenger(request,pk):
             passenger_gender=passenger_gender,
             passenger_phone=passenger_phone,
             passenger_email=passenger_email,
-            passenger_aadhar=passenger_aadhar
+            passenger_aadhar=passenger_aadhar,
+            host = request.user
         )
         return redirect('booking_list')
     return render(request,'book_passenger.html',{'data':data})
 
 @login_required
 def booking_list(request):
-    data = bookModel.objects.all()
+    data = bookModel.objects.filter(host=request.user)
     return render(request,'booking_list.html',{'data':data})
 
 @login_required
@@ -105,14 +122,15 @@ def delete_passenger_data(request,pk):
         passenger_gender=data.passenger_gender,
         passenger_phone=data.passenger_phone,
         passenger_email=data.passenger_email,
-        passenger_aadhar=data.passenger_aadhar
+        passenger_aadhar=data.passenger_aadhar,
+        host=request.user
     )
     data.delete()   
     return redirect('history_passenger_data')
 
 @login_required
 def history_passenger_data(request):
-    data = historyModel.objects.all()
+    data = historyModel.objects.filter(host=request.user)
     return render(request,'history_passenger.html',{'data':data})
 
 @login_required
